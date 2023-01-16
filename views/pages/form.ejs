@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.4.1/dist/normalizr.browser.js"></script>
+    <title>Form EJS</title>
+</head>
+<body>
+  <% if (user == true) { %>
+    <form action="/api/productos/login" id="login" method="POST">
+      <h2>Ingrese su nombre de usuario</h2>
+      <input type="input" id="userName"  name="userName" placeholder="Ingrese su nombre de usuario">
+      <button type="submit">Ingresar</button>
+    </form>
+  <% } else{  %>
+    <h1>Bienvenido <%=user%></h1>
+    <a href="/api/productos/logout">Log out</a>
+    <% }%>
+
+    <h1>Formulario de ingreso de productos en EJS</h1> 
+<a href="/ejs/productos">Lista de productos</a><hr>
+
+  <form action="/api/productos/form" id="formulario" onsubmit="sendTable(); return false;">
+    <div>
+      <input type="input" id="title"  name="title" placeholder="cuchara">
+
+      <input type="input" id="price" name ="price" placeholder="precio">
+
+      <input type="input" id="thumbnail" name="thumbnail" placeholder="url de una imagen">
+    </div>
+
+    <div>
+      <button type="submit">Enviar</button>
+    </div>
+  </form>
+
+  <div id="prods__div">
+    <table id="prods__table">
+      <TR>
+        <TD>Nombre</TD> <TD>precio</TD> <TD>Imagen</TD>
+      </TR>
+      <% products.forEach(item => {%> 
+        </TR>
+          <TD class="prods__item"><%=item.name%></TD> <TD class="prods__item">$<%=item.price%></TD> <TD class="prods__item"><img class="prods__img"src="<%=item.thumbnail%>"></TD>
+        </TR>
+      <%});%> 
+      </table>
+  </div>
+
+  <h1>Chat</h1>
+  <form method="POST" onsubmit="sendMsg(); return false;">
+    <input id="nombre" placeholder="Nombre" required/>
+    <input id="apellido" placeholder="Apellido" required/>
+    <input id="edad" placeholder="Edad" required/><br />
+    <input id="email" placeholder="Email" required/><br />
+    <input id="avatar" placeholder="avatar" required/><br />
+    <input id="msg" placeholder="Mensaje"/>
+    <input type="submit" value="ENVIAR!" />
+  </form>
+  <div id="messages">
+
+  </div>
+  <script src="/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../public/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.4.1/dist/normalizr.browser.js"></script>
+    <title>Prods EJS</title>
+</head>
+<body>
+    <h1>Productos Aleatorios</h1>
+    <% products.forEach(item => {%> 
+        <div>
+            <p>Nombre: <%=item.name%></p>
+            <p>Precio: <%=item.price%></p>
+            <img src="<%=item.thumbnail%>">
+        </div>
+    <%});%> 
+    <h1>Chat</h1>
+
+    <form onsubmit="sendMsg();return false;">
+      <input id="nombre" placeholder="Nombre" required/>
+      <input id="apellido" placeholder="Apellido" required/>
+      <input id="edad" placeholder="Edad" required/><br />
+      <input id="email" placeholder="Email" required/><br />
+      <input id="avatar" placeholder="avatar" required/><br />
+      <input id="msg" placeholder="Mensaje"/>
+      <input type="submit" value="ENVIAR!" />
+    </form>
+    <div id="messages">
+  
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+</script>
+</body>
+</html>
